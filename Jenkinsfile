@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    tools {
+        // Specify the tools you want to use in the pipeline
+        maven 'Maven'    // Example for Maven version configured in Jenkins
+    }
   
     stages {
         stage('Workspace cleanup') {
@@ -13,12 +18,17 @@ pipeline {
             }
         }
     
-    
-    //     stage('Build') {
-    //         steps {
-    //     sh 'npm install'
-    //   }
-    // }
+         stage('Build') {
+             steps {
+                 script {
+                    // Run the 'mvn install' command in the build step
+                     sh 'mvn clean install'  // This command will execute Maven's install phase
+                }
+            }
+        }
+'
+       }
+     }
 
 }
 }
